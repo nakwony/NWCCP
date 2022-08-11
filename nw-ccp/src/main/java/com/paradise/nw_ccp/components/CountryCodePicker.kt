@@ -37,7 +37,6 @@ class CountryCodePicker {
             TODO()
         }
 
-
     fun getCurrentCountryCode(): CountryCode {
         return currentCountryCode.value
     }
