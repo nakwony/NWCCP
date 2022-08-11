@@ -32,7 +32,7 @@ import com.paradise.nw_ccp.utils.getListCountries
 import java.util.*
 
 class CountryCodePicker {
-    private val currentCountryCode = mutableStateOf(Locale.getDefault().country.lowercase())
+    private val currentCountryCode = mutableStateOf("us")
 
     fun getCurrentCountryCode(): String {
         return currentCountryCode.value
