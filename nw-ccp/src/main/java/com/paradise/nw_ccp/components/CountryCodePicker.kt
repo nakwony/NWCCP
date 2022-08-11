@@ -32,6 +32,16 @@ import com.paradise.nw_ccp.utils.getListCountries
 import java.util.*
 
 class CountryCodePicker {
+    private val currentCountryCode: MutableState<CountryCode>
+        get() {
+            TODO()
+        }
+
+
+    fun getCurrentCountryCode(): CountryCode {
+        return currentCountryCode.value
+    }
+
     @Preview
     @Composable
     private fun PreviewCountryCodeDialog() {
@@ -138,6 +148,7 @@ class CountryCodePicker {
                                             .clickable {
                                                 pickedCountry(countryItem)
                                                 isPickCountry = countryItem
+                                                currentCountryCode.value = countryItem
                                                 isOpenDialog = false
                                             }) {
                                         Image(
