@@ -10,7 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://jitpack.io" }
+        maven {
+            url "https://jitpack.io"
+            credentials { username 'jp_89cmejv75k11umofseiqb27mv4' }
+        }
     }
 }
 rootProject.name = "NWCCP"
