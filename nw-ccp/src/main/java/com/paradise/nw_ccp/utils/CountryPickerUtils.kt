@@ -20,7 +20,7 @@ fun getFlagMasterResID(countryName: String): Int {
         "al" -> R.drawable.flag_albania
         "am" -> R.drawable.flag_armenia
         "ao" -> R.drawable.flag_angola
-        "aq" -> R.drawable.flag_antarctica
+//        "aq" -> R.drawable.flag_antarctica
         "ar" -> R.drawable.flag_argentina
         "as" -> R.drawable.flag_american_samoa
         "at" -> R.drawable.flag_austria
@@ -247,7 +247,7 @@ fun getFlagMasterResID(countryName: String): Int {
         "vu" -> R.drawable.flag_vanuatu
         "wf" -> R.drawable.flag_wallis_and_futuna
         "ws" -> R.drawable.flag_samoa
-        "xk" -> R.drawable.flag_kosovo
+//        "xk" -> R.drawable.flag_kosovo
         "ye" -> R.drawable.flag_yemen
         "yt" -> R.drawable.flag_martinique // no exact flag found
         "za" -> R.drawable.flag_south_africa
@@ -267,7 +267,7 @@ internal fun getFlagEmoji(countryName: String): String {
         "al" -> "🇦🇱"
         "am" -> "🇦🇲"
         "ao" -> "🇦🇴"
-        "aq" -> "🇦🇶"
+//        "aq" -> "🇦🇶"
         "ar" -> "🇦🇷"
         "as" -> "🇦🇸"
         "at" -> "🇦🇹"
@@ -502,7 +502,7 @@ internal fun getFlagEmoji(countryName: String): String {
         "vu" -> "🇻🇺"
         "wf" -> "🇼🇫"
         "ws" -> "🇼🇸"
-        "xk" -> "🇽🇰"
+//        "xk" -> "🇽🇰"
         "ye" -> "🇾🇪"
         "yt" -> "🇾🇹"
         "za" -> "🇿🇦"
@@ -522,7 +522,7 @@ fun getListCountries(): List<CountryCode> {
     countries.add(CountryCode("al", "+355", "Albania"))
     countries.add(CountryCode("am", "+374", "Armenia"))
     countries.add(CountryCode("ao", "+244", "Angola"))
-    countries.add(CountryCode("aq", "+672", "Antarctica"))
+//    countries.add(CountryCode("aq", "+672", "Antarctica"))
     countries.add(CountryCode("ar", "+54", "Argentina"))
     countries.add(CountryCode("as", "+1", "American Samoa"))
     countries.add(CountryCode("at", "+43", "Austria"))

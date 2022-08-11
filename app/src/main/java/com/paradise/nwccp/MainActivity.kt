@@ -54,7 +54,7 @@ fun CCP_Card() {
                 ).show()
             },
             defaultSelectedCountry = getListCountries().single {
-                it.countryCode == Locale.getDefault().country.lowercase()
+                it.countryCode == "us"
             },
             dialogSearch = true,
             dialogRounded = 22
