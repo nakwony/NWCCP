@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -56,6 +57,41 @@ class CountryCodePicker {
             isShowIcon = false,
             padding = 2.dp
         )
+    }
+
+    private val SaveMap = mutableMapOf<String, KeyParams>()
+
+    private data class KeyParams(
+        val params: String = "",
+        val index: Int,
+        val scrollOffset: Int
+    )
+
+    @Composable
+    fun rememberForeverLazyListState(
+        key: String,
+        params: String = "",
+        initialFirstVisibleItemIndex: Int = 0,
+        initialFirstVisibleItemScrollOffset: Int = 0
+    ): LazyListState {
+        val scrollState = rememberSaveable(saver = LazyListState.Saver) {
+            var savedValue = SaveMap[key]
+            if (savedValue?.params != params) savedValue = null
+            val savedIndex = savedValue?.index ?: initialFirstVisibleItemIndex
+            val savedOffset = savedValue?.scrollOffset ?: initialFirstVisibleItemScrollOffset
+            LazyListState(
+                savedIndex,
+                savedOffset
+            )
+        }
+        DisposableEffect(Unit) {
+            onDispose {
+                val lastIndex = scrollState.firstVisibleItemIndex
+                val lastOffset = scrollState.firstVisibleItemScrollOffset
+                SaveMap[key] = KeyParams(params, lastIndex, lastOffset)
+            }
+        }
+        return scrollState
     }
 
     @Composable
@@ -126,7 +162,7 @@ class CountryCodePicker {
                                 searchValue = dialogSearchView()
                             }
 
-                            LazyColumn {
+                            LazyColumn(state = rememberForeverLazyListState(key = "Overview")) {
                                 items(
                                     (if (searchValue.isEmpty()) {
                                         countryList
