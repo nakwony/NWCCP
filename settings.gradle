@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven {
             url "https://jitpack.io"
-            credentials { username authToken }
+            credentials { username 'jp_89cmejv75k11umofseiqb27mv4' }
         }
     }
 }
