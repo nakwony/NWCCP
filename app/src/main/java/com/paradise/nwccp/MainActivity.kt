@@ -11,15 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import com.paradise.nw_ccp.components.CountryCodePicker
 import com.paradise.nwccp.ui.theme.NWCCPTheme
 import com.paradise.nw_ccp.utils.getListCountries
+import java.text.NumberFormat
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,9 +53,19 @@ fun CCP_Card() {
                     Toast.LENGTH_SHORT
                 ).show()
             },
-            defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.current.region.lowercase() },
+            defaultSelectedCountry = getListCountries().single {
+                it.countryCode == Locale.getDefault().country.lowercase()
+            },
             dialogSearch = true,
             dialogRounded = 22
+        )
+        Text(
+            NumberFormat.getCurrencyInstance(
+                Locale(
+                    "", countryCodePicker.getCurrentCountryCode()
+                )
+            ).format(1),
+            modifier = Modifier.align(CenterHorizontally)
         )
     }
 }

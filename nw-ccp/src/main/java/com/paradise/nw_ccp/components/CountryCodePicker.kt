@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -32,12 +31,9 @@ import com.paradise.nw_ccp.utils.getListCountries
 import java.util.*
 
 class CountryCodePicker {
-    private val currentCountryCode: MutableState<CountryCode>
-        get() {
-            TODO()
-        }
+    private val currentCountryCode = mutableStateOf("us")
 
-    fun getCurrentCountryCode(): CountryCode {
+    fun getCurrentCountryCode(): String {
         return currentCountryCode.value
     }
 
@@ -46,7 +42,7 @@ class CountryCodePicker {
     private fun PreviewCountryCodeDialog() {
         CountryCodeDialog(
             pickedCountry = {},
-            defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.current.region.lowercase() },
+            defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.getDefault().country.lowercase() },
         )
     }
 
@@ -55,7 +51,7 @@ class CountryCodePicker {
     private fun PreviewCountryCodeDialogNoIconReducedPadding() {
         CountryCodeDialog(
             pickedCountry = {},
-            defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.current.region.lowercase() },
+            defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.getDefault().country.lowercase() },
             isOnlyFlagShow = true,
             isShowIcon = false,
             padding = 2.dp
@@ -147,7 +143,7 @@ class CountryCodePicker {
                                             .clickable {
                                                 pickedCountry(countryItem)
                                                 isPickCountry = countryItem
-                                                currentCountryCode.value = countryItem
+                                                currentCountryCode.value = countryItem.countryCode
                                                 isOpenDialog = false
                                             }) {
                                         Image(
