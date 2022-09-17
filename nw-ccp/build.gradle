@@ -11,7 +11,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.paradise'
                 artifactId = 'nw_ccp'
-                version = '1.0.5'
+                version = '1.0.6'
             }
 
             debug(MavenPublication) {
@@ -19,7 +19,7 @@ afterEvaluate {
                 from components.debug
                 groupId = 'com.paradise'
                 artifactId = 'nw_ccp'
-                version = '1.0.5'
+                version = '1.0.6'
             }
         }
     }
@@ -66,6 +66,7 @@ android {
 }
 
 dependencies {
+    //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.8.0'
 
     implementation 'androidx.appcompat:appcompat:1.5.1'
