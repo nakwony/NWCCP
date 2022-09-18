@@ -37,16 +37,14 @@ class CountryCodePicker(countryCode: String) {
         return currentCountryCode.value
     }
 
-    @Composable
-    private fun PreviewCountryCodeDialog() {
+    @Composable private fun PreviewCountryCodeDialog() {
         CountryCodeDialog(
             pickedCountry = {},
             defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.getDefault().country.lowercase() },
         )
     }
 
-    @Composable
-    private fun PreviewCountryCodeDialogNoIconReducedPadding() {
+    @Composable private fun PreviewCountryCodeDialogNoIconReducedPadding() {
         CountryCodeDialog(
             pickedCountry = {},
             defaultSelectedCountry = getListCountries().single { it.countryCode == Locale.getDefault().country.lowercase() },
@@ -59,13 +57,10 @@ class CountryCodePicker(countryCode: String) {
     private val SaveMap = mutableMapOf<String, KeyParams>()
 
     private data class KeyParams(
-        val params: String = "",
-        val index: Int,
-        val scrollOffset: Int
+        val params: String = "", val index: Int, val scrollOffset: Int
     )
 
-    @Composable
-    fun rememberForeverLazyListState(
+    @Composable fun rememberForeverLazyListState(
         key: String,
         params: String = "",
         initialFirstVisibleItemIndex: Int = 0,
@@ -77,8 +72,7 @@ class CountryCodePicker(countryCode: String) {
             val savedIndex = savedValue?.index ?: initialFirstVisibleItemIndex
             val savedOffset = savedValue?.scrollOffset ?: initialFirstVisibleItemScrollOffset
             LazyListState(
-                savedIndex,
-                savedOffset
+                savedIndex, savedOffset
             )
         }
         DisposableEffect(Unit) {
@@ -91,8 +85,7 @@ class CountryCodePicker(countryCode: String) {
         return scrollState
     }
 
-    @Composable
-    fun CountryCodeDialog(
+    @Composable fun CountryCodeDialog(
         modifier: Modifier = Modifier,
         padding: Dp = 15.dp,
         isOnlyFlagShow: Boolean = false,
@@ -106,11 +99,9 @@ class CountryCodePicker(countryCode: String) {
         var isPickCountry by remember { mutableStateOf(defaultSelectedCountry) }
         var isOpenDialog by rememberSaveable { mutableStateOf(false) }
         var searchValue by remember { mutableStateOf("") }
-        Card(
-            modifier = modifier
-                .padding(3.dp)
-                .clickable { isOpenDialog = true }
-        ) {
+        Card(modifier = modifier
+            .padding(3.dp)
+            .clickable { isOpenDialog = true }) {
             Column(modifier = Modifier.padding(padding)) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -128,12 +119,10 @@ class CountryCodePicker(countryCode: String) {
                             "${
                                 Currency.getInstance(
                                     Locale(
-                                        "",
-                                        isPickCountry.countryCode
+                                        "", isPickCountry.countryCode
                                     )
                                 ).displayName
-                            } ",
-                            Modifier.padding(horizontal = 18.dp)
+                            } ", Modifier.padding(horizontal = 18.dp)
                         )
                     }
                     if (isShowIcon) {
@@ -167,18 +156,16 @@ class CountryCodePicker(countryCode: String) {
                                         countryList.searchCountryList(searchValue)
                                     })
                                 ) { countryItem ->
-                                    Row(
-                                        Modifier
-                                            .padding(
-                                                horizontal = 18.dp,
-                                                vertical = 18.dp
-                                            )
-                                            .clickable {
-                                                pickedCountry(countryItem)
-                                                isPickCountry = countryItem
-                                                currentCountryCode.value = countryItem.countryCode
-                                                isOpenDialog = false
-                                            }) {
+                                    Row(Modifier.fillMaxSize()
+                                        .padding(
+                                            horizontal = 18.dp, vertical = 18.dp
+                                        )
+                                        .clickable {
+                                            pickedCountry(countryItem)
+                                            isPickCountry = countryItem
+                                            currentCountryCode.value = countryItem.countryCode
+                                            isOpenDialog = false
+                                        }) {
                                         Image(
                                             painter = painterResource(
                                                 id = getFlagMasterResID(
@@ -201,27 +188,25 @@ class CountryCodePicker(countryCode: String) {
         }
     }
 
-    @Composable
-    private fun dialogSearchView(): String {
+    @Composable private fun dialogSearchView(): String {
         var searchValue by remember { mutableStateOf("") }
         Row {
             CustomTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp),
+                    .height(56.dp),
                 value = searchValue,
                 onValueChange = {
                     searchValue = it
                 },
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 textAlign = TextAlign.Start,
             )
         }
         return searchValue
     }
 
-    @Composable
-    private fun CustomTextField(
+    @Composable private fun CustomTextField(
         modifier: Modifier = Modifier,
         value: String,
         onValueChange: (String) -> Unit,
@@ -230,19 +215,16 @@ class CountryCodePicker(countryCode: String) {
         textAlign: TextAlign = TextAlign.Center
     ) {
         Box(
-            modifier = modifier
-                .background(
-                    color = Color.White.copy(alpha = 0.1f)
-                )
+            modifier = modifier.background(
+                color = Color.White.copy(alpha = 0.1f)
+            )
         ) {
             TextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 value = value,
                 onValueChange = onValueChange,
                 textStyle = LocalTextStyle.current.copy(
-                    textAlign = textAlign,
-                    fontSize = fontSize
+                    textAlign = textAlign, fontSize = fontSize
                 ),
                 singleLine = true,
                 leadingIcon = {

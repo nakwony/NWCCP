@@ -42,7 +42,7 @@ fun MainScreen() {
 
 @Composable
 fun CCP_Card() {
-    val countryCodePicker by remember { mutableStateOf(CountryCodePicker()) }
+    val countryCodePicker by remember { mutableStateOf(CountryCodePicker("us")) }
     val context = LocalContext.current
     Column {
         countryCodePicker.CountryCodeDialog(
