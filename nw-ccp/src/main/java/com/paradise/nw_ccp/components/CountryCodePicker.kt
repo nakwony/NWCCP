@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -31,18 +30,13 @@ import com.paradise.nw_ccp.utils.getFlagMasterResID
 import com.paradise.nw_ccp.utils.getListCountries
 import java.util.*
 
-class CountryCodePicker {
-    private var currentCountryCode = mutableStateOf("us")
-
-    fun setCurrentCountryCode(countryCode:MutableState<String>) {
-        currentCountryCode = countryCode
-    }
+class CountryCodePicker(countryCode: String) {
+    private var currentCountryCode = mutableStateOf(countryCode)
 
     fun getCurrentCountryCode(): String {
         return currentCountryCode.value
     }
 
-    @Preview
     @Composable
     private fun PreviewCountryCodeDialog() {
         CountryCodeDialog(
@@ -51,7 +45,6 @@ class CountryCodePicker {
         )
     }
 
-    @Preview
     @Composable
     private fun PreviewCountryCodeDialogNoIconReducedPadding() {
         CountryCodeDialog(
@@ -279,5 +272,9 @@ class CountryCodePicker {
                 )
             }
         }
+    }
+
+    init {
+        currentCountryCode = mutableStateOf(countryCode)
     }
 }
