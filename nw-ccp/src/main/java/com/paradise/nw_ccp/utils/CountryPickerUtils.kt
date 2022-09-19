@@ -694,7 +694,7 @@ fun getListCountries(): List<CountryCode> {
     countries.add(CountryCode("pw", "+680", "Palau"))
     countries.add(CountryCode("py", "+595", "Paraguay"))
     countries.add(CountryCode("qa", "+974", "Qatar"))
-    countries.add(CountryCode("re", "+262", "Réunion"))
+    countries.add(CountryCode("re", "+262", "La Réunion"))
     countries.add(CountryCode("ro", "+40", "Romania"))
     countries.add(CountryCode("rs", "+381", "Serbia"))
     countries.add(CountryCode("ru", "+7", "Russian Federation"))
