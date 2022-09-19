@@ -143,7 +143,7 @@ class CountryCodePicker(countryCode: String) {
                         elevation = 4.dp,
                         shape = RoundedCornerShape(dialogRounded.dp)
                     ) {
-                        Column {
+                        Column(Modifier.fillMaxSize()) {
                             if (dialogSearch) {
                                 searchValue = dialogSearchView()
                             }
@@ -156,16 +156,18 @@ class CountryCodePicker(countryCode: String) {
                                         countryList.searchCountryList(searchValue)
                                     })
                                 ) { countryItem ->
-                                    Row(Modifier.fillMaxSize()
-                                        .padding(
-                                            horizontal = 18.dp, vertical = 18.dp
-                                        )
-                                        .clickable {
-                                            pickedCountry(countryItem)
-                                            isPickCountry = countryItem
-                                            currentCountryCode.value = countryItem.countryCode
-                                            isOpenDialog = false
-                                        }) {
+                                    Row(
+                                        Modifier
+                                            .fillMaxSize()
+                                            .padding(
+                                                horizontal = 18.dp, vertical = 18.dp
+                                            )
+                                            .clickable {
+                                                pickedCountry(countryItem)
+                                                isPickCountry = countryItem
+                                                currentCountryCode.value = countryItem.countryCode
+                                                isOpenDialog = false
+                                            }) {
                                         Image(
                                             painter = painterResource(
                                                 id = getFlagMasterResID(
